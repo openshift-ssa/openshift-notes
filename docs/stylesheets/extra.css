@@ -1,0 +1,14 @@
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #EE0000;
+  --md-primary-fg-color--light: #FF4D4D;
+  --md-primary-fg-color--dark: #A30000;
+  --md-accent-fg-color: #A30000;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #EE0000;
+  --md-primary-fg-color--light: #FF4D4D;
+  --md-primary-fg-color--dark: #A30000;
+  --md-accent-fg-color: #FF4D4D;
+}
