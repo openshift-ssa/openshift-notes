@@ -7,6 +7,9 @@ dev_addr: 127.0.0.1:8000
 
 theme:
   name: material
+  custom_dir: overrides
+  logo: assets/openshift-logo.svg
+  favicon: assets/openshift-logo.svg
   font:
     text: Red Hat Text
     code: Red Hat Mono
