@@ -7,34 +7,29 @@ dev_addr: 127.0.0.1:8000
 
 theme:
   name: material
-  custom_dir: overrides
-  logo: assets/images/openshift-logo.svg
-  favicon: assets/images/openshift-logo.svg
   font:
     text: Red Hat Text
     code: Red Hat Mono
   palette:
     - scheme: default
-      primary: custom
-      accent: custom
+      primary: black
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: custom
-      accent: custom
+      primary: black
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.sections
     - navigation.expand
-    - navigation.top
     - content.code.copy
-    - content.code.annotate
 
 extra_css:
   - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/external-links.js
 
 markdown_extensions:
   - admonition
@@ -51,15 +46,23 @@ markdown_extensions:
   - toc:
       permalink: true
 
-extra_javascript:
-  - assets/javascripts/external-links.js
-
 nav:
   - Home: index.md
-  - Installation:
-      - installation/index.md
-      - Install Host: installation/install-host.md
-      - IPI: installation/ipi.md
-      - SNO + ACM: installation/sno-acm.md
-  - GitOps: gitops/index.md
-  - Operators: operators/index.md
+  - Prerequisites: prerequisites.md
+  - Install: 
+    - Install Host: install/install-host.md
+    - Hub and Spoke: install/hub-spoke.md
+    - Assisted Installer: install/assisted-installer.md
+    - Agent Based Installer: install/agent-based-installer.md
+  - Post Installation:
+    - Storage: post-installation/storage.md
+    - Registry Configuration: post-installation/registry-configuration.md
+    - Networking: post-installation/networking.md
+    - Advanced Cluster Management: post-installation/advanced-cluster-management.md
+    - Virtualization: post-installation/virtualization.md
+  - Workloads: 
+    - Containers: workloads/containers.md
+    - Virtual Machines: workloads/virtual-machines.md
+  - Functional Testing:
+    - Node Failure: functional-testing/node-failure.md
+  - Troubleshooting: troubleshooting.md
