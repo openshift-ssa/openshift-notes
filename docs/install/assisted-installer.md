@@ -1,1 +1,93 @@
 # Assisted Installer
+
+[Assisted Installer for OpenShift Container Platform Official Documentation](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/latest/html/installing_openshift_container_platform_with_the_assisted_installer/index)
+
+Prior to using the assisted installer, you need to have gathered the following information and configured your environment to match. **These example values are for a single node OpenShift (SNO) installation.**
+
+| Item                          | Example Value                                 |
+| ---                           | ---                                           |
+| Cluster Name                  | hub                                           |
+| Base Domain                   | clusters.example.com                          |
+| Machine Subnet                | 10.0.0.0/28                                   |
+| Machine Subnet VLAN           | 10                                            |
+| Machine Subnet - Gateway      | 10.0.0.1                                      |
+| Hub - API VIP                 | 10.0.0.3                                      |
+| Hub - Ingress VIP             | 10.0.0.3                                      |
+| DNS                           | 10.1.0.2,10.1.0.3                             |
+| DNS - API A Record            | api.hub.clusters.example.com -> 10.0.0.3      |
+| DNS - Ingress A Record        | *.apps.hub.clusters.example.com -> 10.0.0.3   |
+| Host - NIC - MAC Address 1    | 00:1A:2B:3C:4D:00                             |
+| Host - NIC - MAC Address 2    | 00:1A:2B:3C:4D:01                             |
+| Host - IP address             | 10.0.0.3                                      |
+| SSH Public Key Location       | `~/.ssh/ocp_ed25519.pub`                      |
+
+!!! note "Full Cluster Install Notes" 
+    - The VIPs will not point to a specific machine. They will be unassigned to any machine in the subnet. Go look at the [prerequisites](../prerequisites.md) document for more information. 
+    - You will also need to gather the Host information above for all the hosts in your cluster - control planes and workers. When you get to the host specific configurations, you will need to add all your hosts. 
+
+## Install
+
+To get started with the assisted installer, proceed to the [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift/assisted-installer/clusters). Click on "Create Cluster". If an item in the details below isn't specifically referenced, that means to leave the default. 
+
+### Cluster details
+
+- Put in the cluster name
+- Put in the Base domain
+- Choose the OpenShift Version (ensure compatibility, especially with storage CSI driver)
+- Choose your CPU architecture
+- Choose No platform integration
+- Number of control plane nodes should be selected based on the install type you are doing: 
+    - 1 (Single Node OpenShift)
+    - 3 (highly available cluster)
+- Choose Hosts' network configuration to be "Static IP, bridges and bonds" (unless you allow DHCP, which is rare)
+- No Encryption
+
+-> Click Next
+
+## Static network configurations
+
+- Select IPv4
+- If you are using a vlan, click "Use VLAN" checkbox, and enter the Machine Subnet VLAN value. 
+- Enter DNS values
+- Enter the Machine Subnet values
+- Enter the Default gateway
+
+-> Click Next
+
+## Host specific configurations
+
+- If using a bond, click the "Use bond" checkbox
+- Bond type is typically 802.3ad (LACP)
+- Enter the mac addresses for the NICs in the bond using the Host NIC - MAC Address 1/2 values above
+- Enter the IP address for the host
+- If you are doing a full cluster install, repeat this process for all the hosts by using the "Add another host configuration" button. 
+
+--> Click Next
+
+## Operators
+
+Don't preinstall any operators. 
+
+--> Click Next
+
+## Host discovery
+
+- Click on the "Add hosts" button at the top of the page
+- For "Provisioning type", select "Full image file - Download a self-contained ISO"
+- Add the SSH public key 
+- If you have a specific proxy configuration, use the "Show proxy settings" checkbox to enable the view and enter the information. 
+- If you have a MITM proxy which reencrypts traffic, click the "Configure cluster-wide trusted certificates" and add the MITM root/intermediate cert. 
+- Click "Generate Discovery ISO" and save the ISO file. 
+
+#### BMC Install
+
+- If you are using a BMC web interface to create the cluster, save the ISO file locally and attach it. 
+- The web interfaces for BMC installs of this nature can be finicky. If you have a web server somewhere, host it there. Or use the Discovery ISO URL. 
+
+#### Waiting for host
+
+- Boot the host(s) with the ISO
+    - for a SNO install, wait for the single host to present itself
+    - for a full cluster install, wait for all hosts to come up in the list. 
+
+--> Click Next

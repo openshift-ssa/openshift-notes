@@ -1,8 +1,12 @@
 # Home
 
-This is a collection of instructions, documentation and notes related to the installation and configuration of a basic OpenShift environment. 
+This is a collection of instructions, documentation and notes related to the installation and configuration of a basic OpenShift environments in on-premise environments, focused on bare-metal.  
 
-## [Prerequisites](prerequisites.md)  
+## Prerequisites 
+
+Prior to install, there are some required prerequisites to setup your environment properly.
+
+[Prerequisites](prerequisites.md)  
 
 ## Hub and Spoke Install
 

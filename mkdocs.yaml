@@ -55,11 +55,14 @@ nav:
     - Assisted Installer: install/assisted-installer.md
     - Agent Based Installer: install/agent-based-installer.md
   - Post Installation:
+    - Banner: post-installation/banner.md
     - Storage: post-installation/storage.md
     - Registry Configuration: post-installation/registry-configuration.md
     - Networking: post-installation/networking.md
     - Advanced Cluster Management: post-installation/advanced-cluster-management.md
     - Virtualization: post-installation/virtualization.md
+    - Certificates: post-installation/certificates.md
+    - External Secrets: post-installation/external-secrets.md
   - Workloads: 
     - Containers: workloads/containers.md
     - Virtual Machines: workloads/virtual-machines.md
